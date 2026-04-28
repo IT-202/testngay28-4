@@ -14,6 +14,16 @@ CREATE TABLE product(
         
 );
 
+CREATE TABLE orders(
+		order_id VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY ,
+        order_date DATE DEFAULT (current_date) ,
+        total_amount DECIMAL(19,4) NOT NULL CHECK(total_amount > 0 ) ,
+        product_id VARCHAR(255) NOT NULL UNIQUE,
+        FOREIGN KEY (product_id) REFERENCES product(product_id)
+		
+);
+
+
 CREATE TABLE customer(
 		customer_id VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY ,
         full_name VARCHAR(255) NOT NULL ,
@@ -27,19 +37,11 @@ CREATE TABLE customer(
 );
 
 
-CREATE TABLE orders(
-		order_id VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY ,
-        order_date DATE DEFAULT (current_date) ,
-        total_amount DECIMAL(19,4) NOT NULL CHECK(total_amount > 0 ) ,
-        FOREIGN KEY (product_id) REFERENCES product(product_id)
-		
-);
-
 
 CREATE TABLE order_detail(
-		quantity_purchased MIDDLEINT NOT NULL CHECK(quantity_purchased > 0) ,
+		quantity_purchased MEDIUMINT NOT NULL CHECK(quantity_purchased > 0) ,
         sell_price INT NOT NULL CHECK( sell_price > 0 ) ,
-        product_id VARCHAR(255) NOT NULL UNIQUE ,
+        order_id VARCHAR(255) NOT NULL UNIQUE ,
         FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
 
