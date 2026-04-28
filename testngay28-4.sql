@@ -1,4 +1,5 @@
 -- phần 2 
+CREATE DATABASE SalesManagement ;
 USE SalesManagement ;
 
 
@@ -57,8 +58,8 @@ ALTER TABLE orders ADD note VARCHAR(255) DEFAULT ' không có ghi chú ' ;
 ALTER TABLE product CHANGE COLUMN manufacturer producer VARCHAR(255) NOT NULL ;
 
 
--- DROP TABLE orders ;
--- DROP TABLE order_detail ;
+DROP TABLE orders ;
+DROP TABLE order_detail ;
 
 -- phần 3 
 
